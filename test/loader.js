@@ -7,17 +7,96 @@ process.on('uncaughtException', function(err) {
 	console.error(err.stack);
 });
 
+function validateSimpleTest(tc) {
+	assert.ok(tc);
+	assert.nothing(tc.setUp);
+	assert.nothing(tc.tearDown);
+	assert.nothing(tc.option);
+	assert.isA(tc.testCase, Function);
+}
+
+function validateFullTest(tc) {
+	assert.ok(tc);
+	assert.isA(tc.setUp, Function);
+	assert.isA(tc.tearDown, Function);
+	assert.ok(tc.option);
+	assert.isA(tc.testCase, Function);
+}
+
 module.exports = {
-	loadADir: function() {
+	loadSingleTest: function() {
 		loader({
-			dir:'cases'
+			file: 'example/a_testcase'
 		});
 
-		var tc = loader.next();
-		assert.ok(tc);
-		assert.nothing(tc.setUp);
-		assert.nothing(tc.tearDown);
-		assert.nothing(tc.option);
-		assert.isA(tc.testCase, Function);
+		validateSimpleTest(loader.next());
+	},
+	loadMoreTests: function() {
+		loader({
+			file: 'example/more_tests'
+		});
+
+		var i = 0;
+		while (i < 3) {
+			validateSimpleTest(loader.next());
+			++i;
+		}
+
+		assert.nothing(loader.next());
+	},
+	loadNestedTests: function() {
+		loader({
+			file: 'example/nested_test'
+		});
+
+		var i = 0;
+		while (i < 8) {
+			validateSimpleTest(loader.next());
+			++i;
+		}
+
+		assert.nothing(loader.next());
+	},
+
+	loadWithSetUpAndTearDown: function() {
+		loader({
+			file: 'example/setup_teardown'
+		});
+
+		var i = 0;
+		while (i < 6) {
+			validateFullTest(loader.next());
+			++i;
+		}
+
+		i = 0;
+		while (i < 2) {
+			validateSimpleTest(loader.next());
+			++i;
+		}
+
+		assert.nothing(loader.next());
+	},
+	loadADir: function() {
+		loader({
+			dir: 'example/folder'
+		});
+
+		var i = 0;
+		while (i < 9) {
+			validateSimpleTest(loader.next());
+			++i;
+		}
+
+		assert.nothing(loader.next());
+	},
+	loadATestCase: function() {
+		loader({
+			file: 'example/nested_test',
+			testCase: 'simpleCase2'
+		});
+
+		validateSimpleTest(loader.next());
+		assert.nothing(loader.next());
 	}
 };

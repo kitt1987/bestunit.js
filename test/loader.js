@@ -1,103 +1,104 @@
 'use strict';
 
-var loader = require('../lib/test_loader');
-var assert = require('../lib/assertion');
+var Loader = require('../lib/test_loader');
 
-process.on('uncaughtException', function(err) {
-	console.error(err.stack);
-});
-
-function validateSimpleTest(tc) {
-	assert.ok(tc);
-	assert.nothing(tc.setUp);
-	assert.nothing(tc.tearDown);
-	assert.nothing(tc.option);
-	assert.isString(tc.name);
-	assert.isA(tc.testCase, Function);
+function validateSimpleTest(tc, t) {
+	t.ok(tc);
+	t.nothing(tc.setUp);
+	t.nothing(tc.tearDown);
+	t.nothing(tc.option);
+	t.isString(tc.name);
+	t.isA(tc.testCase, Function);
 }
 
-function validateFullTest(tc) {
-	assert.ok(tc);
-	assert.isA(tc.setUp, Function);
-	assert.isA(tc.tearDown, Function);
-	assert.ok(tc.option);
-	assert.isA(tc.testCase, Function);
+function validateFullTest(tc, t) {
+	t.ok(tc);
+	t.isA(tc.setUp, Function);
+	t.isA(tc.tearDown, Function);
+	t.ok(tc.option);
+	t.isA(tc.testCase, Function);
 }
 
 module.exports = {
-	loadSingleTest: function() {
-		loader({
+	loadSingleTest: function(t) {
+		var loader = new Loader({
 			file: 'example/a_testcase'
 		});
 
-		validateSimpleTest(loader.next());
+		validateSimpleTest(loader.next(), t);
+		t.done();
 	},
-	loadMoreTests: function() {
-		loader({
+	loadMoreTests: function(t) {
+		var loader = new Loader({
 			file: 'example/more_tests'
 		});
 
 		var i = 0;
 		while (i < 3) {
-			validateSimpleTest(loader.next());
+			validateSimpleTest(loader.next(), t);
 			++i;
 		}
 
-		assert.nothing(loader.next());
+		t.nothing(loader.next());
+		t.done();
 	},
-	loadNestedTests: function() {
-		loader({
+	loadNestedTests: function(t) {
+		var loader = new Loader({
 			file: 'example/nested_test'
 		});
 
 		var i = 0;
 		while (i < 8) {
-			validateSimpleTest(loader.next());
+			validateSimpleTest(loader.next(), t);
 			++i;
 		}
 
-		assert.nothing(loader.next());
+		t.nothing(loader.next());
+		t.done();
 	},
 
-	loadWithSetUpAndTearDown: function() {
-		loader({
+	loadWithSetUpAndTearDown: function(t) {
+		var loader = new Loader({
 			file: 'example/setup_teardown'
 		});
 
 		var i = 0;
 		while (i < 6) {
-			validateFullTest(loader.next());
+			validateFullTest(loader.next(), t);
 			++i;
 		}
 
 		i = 0;
 		while (i < 2) {
-			validateSimpleTest(loader.next());
+			validateSimpleTest(loader.next(), t);
 			++i;
 		}
 
-		assert.nothing(loader.next());
+		t.nothing(loader.next());
+		t.done();
 	},
-	loadADir: function() {
-		loader({
+	loadADir: function(t) {
+		var loader = new Loader({
 			dir: 'example/folder'
 		});
 
 		var i = 0;
 		while (i < 9) {
-			validateSimpleTest(loader.next());
+			validateSimpleTest(loader.next(), t);
 			++i;
 		}
 
-		assert.nothing(loader.next());
+		t.nothing(loader.next());
+		t.done();
 	},
-	loadATestCase: function() {
-		loader({
+	loadATestCase: function(t) {
+		var loader = new Loader({
 			file: 'example/nested_test',
 			testCase: 'simpleCase2'
 		});
 
-		validateSimpleTest(loader.next());
-		assert.nothing(loader.next());
+		validateSimpleTest(loader.next(), t);
+		t.nothing(loader.next());
+		t.done();
 	}
 };

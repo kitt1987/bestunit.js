@@ -9,7 +9,9 @@ try {
 	_.forIn(fs.readdirSync(tests), function(f) {
 		if (f === 'index.js')
 			return;
+
 		_.forOwn(require(path.join(tests, f)), function(v, k) {
+			console.log('Run ' + f + '.' + k);
 			v();
 		});
 	});

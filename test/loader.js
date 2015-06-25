@@ -12,6 +12,7 @@ function validateSimpleTest(tc) {
 	assert.nothing(tc.setUp);
 	assert.nothing(tc.tearDown);
 	assert.nothing(tc.option);
+	assert.isString(tc.name);
 	assert.isA(tc.testCase, Function);
 }
 

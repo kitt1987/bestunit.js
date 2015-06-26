@@ -12,7 +12,8 @@ function defineOptions() {
 
 	parser.addArgument(
 		['-d', '--dir'], {
-			help: 'test case directory'
+			action: 'append',
+			help: 'test case directory. eg. -d dir1 -d dir2'
 		}
 	);
 

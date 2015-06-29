@@ -5,7 +5,7 @@
 function defineOptions() {
 	var ArgumentParser = require('argparse').ArgumentParser;
 	var parser = new ArgumentParser({
-		version: '0.0.0',
+		version: require('../package.json').version,
 		addHelp: true,
 		description: 'Unit testing framework'
 	});

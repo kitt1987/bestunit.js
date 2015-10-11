@@ -2,7 +2,7 @@
 
 'use strict';
 
-function defineOptions() {
+var options = () => {
 	var ArgumentParser = require('argparse').ArgumentParser;
 	var parser = new ArgumentParser({
 		version: require('../package.json').version,
@@ -29,7 +29,14 @@ function defineOptions() {
 		}
 	);
 
-	return parser.parseArgs();
-}
+	parser.addArgument(
+		['-dd', '--debug'], {
+			action: 'storeTrue',
+			help: 'Enable debug mode'
+		}
+	);
 
-require('../lib/test_loop').run(defineOptions());
+	return parser.parseArgs();
+};
+
+(new (require('../lib/test_loop'))(options())).start();

@@ -1,56 +1,144 @@
 'use strict';
 
 module.exports = {
-	setUp: function(t) {
-		t.nothing(t.setUpG);
-		t.setUpG = true;
+	before: function(t) {
+		t.nothing(t.before);
+		t.before = true;
 		t.done();
 	},
-	tearDown: function(t) {
-		t.ok(t.setUpG);
-		delete t.setUpG;
+	after: function(t) {
+		t.ok(t.before);
+		t.before = null;
+		t.done();
+	},
+	beforeEach: function(t) {
+		t.ok(t.before);
+		t.nothing(t.beforeEach);
+		t.beforeEach = true;
+		t.done();
+	},
+	afterEach: function(t) {
+		t.ok(t.before);
+		t.ok(t.beforeEach);
+		t.beforeEach = null;
 		t.done();
 	},
 	g1: {
-		setUp: function(t) {
-			t.nothing(t.setUpG1);
-			t.setUpG1 = true;
+		before: function(t) {
+			t.ok(t.before);
+			t.ok(t.beforeEach);
+			t.nothing(t.beforeG1);
+			t.beforeG1 = true;
 			t.done();
 		},
-		tearDown: function(t) {
-			t.ok(t.setUpG1);
-			delete t.setUpG1;
+		after: function(t) {
+			t.ok(t.before);
+			t.ok(t.beforeEach);
+			t.ok(t.beforeG1);
+			t.beforeG1 = null;
+			t.done();
+		},
+		beforeEach: function(t) {
+			t.ok(t.before);
+			t.ok(t.beforeEach);
+			t.ok(t.beforeG1);
+			t.nothing(t.beforeEachOfG1);
+			t.beforeEachOfG1 = true;
+			t.done();
+		},
+		afterEach: function(t) {
+			t.ok(t.before);
+			t.ok(t.beforeEach);
+			t.ok(t.beforeG1);
+			t.ok(t.beforeEachOfG1);
+			t.beforeEachOfG1 = null;
 			t.done();
 		},
 		g2: {
-			setUp: function(t) {
-				t.nothing(t.setUpG2);
-				t.setUpG2 = true;
+			before: function(t) {
+				t.ok(t.before);
+				t.ok(t.beforeEach);
+				t.ok(t.beforeG1);
+				t.ok(t.beforeEachOfG1);
+				t.nothing(t.beforeG2);
+				t.beforeG2 = true;
 				t.done();
 			},
-			tearDown: function(t) {
-				t.ok(t.setUpG2);
-				delete t.setUpG2;
+			after: function(t) {
+				t.ok(t.before);
+				t.ok(t.beforeEach);
+				t.ok(t.beforeG1);
+				t.ok(t.beforeEachOfG1);
+				t.ok(t.beforeG2);
+				delete t.beforeG2;
+				t.done();
+			},
+			beforeEach: function(t) {
+				t.ok(t.before);
+				t.ok(t.beforeEach);
+				t.ok(t.beforeG1);
+				t.ok(t.beforeEachOfG1);
+				t.ok(t.beforeG2);
+				t.nothing(t.beforeEachOfG2);
+				t.beforeEachOfG2 = true;
+				t.done();
+			},
+			afterEach: function(t) {
+				t.ok(t.before);
+				t.ok(t.beforeEach);
+				t.ok(t.beforeG1);
+				t.ok(t.beforeEachOfG1);
+				t.ok(t.beforeG2);
+				t.ok(t.beforeEachOfG2);
+				t.beforeEachOfG2 = null;
 				t.done();
 			},
 			t: function(t) {
-				t.ok(t.setUpG);
-				t.ok(t.setUpG1);
-				t.ok(t.setUpG2);
+				t.ok(t.before);
+				t.ok(t.beforeEach);
+				t.ok(t.beforeG1);
+				t.ok(t.beforeEachOfG1);
+				t.ok(t.beforeG2);
+				t.ok(t.beforeEachOfG2);
 				t.done();
-			}
+			},
+			t2: function(t) {
+				t.ok(t.before);
+				t.ok(t.beforeEach);
+				t.ok(t.beforeG1);
+				t.ok(t.beforeEachOfG1);
+				t.ok(t.beforeG2);
+				t.ok(t.beforeEachOfG2);
+				t.done();
+			},
 		},
 		t: function(t) {
-			t.ok(t.setUpG);
-			t.ok(t.setUpG1);
-			t.nothing(t.setUpG2);
+			t.ok(t.before);
+			t.ok(t.beforeEach);
+			t.ok(t.beforeG1);
+			t.ok(t.beforeEachOfG1);
+			t.nothing(t.beforeG2);
+			t.done();
+		},
+		t2: function(t) {
+			t.ok(t.before);
+			t.ok(t.beforeEach);
+			t.ok(t.beforeG1);
+			t.ok(t.beforeEachOfG1);
+			t.nothing(t.beforeG2);
 			t.done();
 		}
 	},
 	t: function(t) {
-		t.ok(t.setUpG);
-		t.nothing(t.setUpG1);
-		t.nothing(t.setUpG2);
+		t.ok(t.before);
+		t.nothing(t.beforeG1);
+		t.nothing(t.beforeEachOfG1);
+		t.done();
+	},
+	t2: function(t) {
+		t.ok(t.before);
+		t.nothing(t.beforeG1);
+		t.nothing(t.beforeEachOfG1);
 		t.done();
 	}
 };

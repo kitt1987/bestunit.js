@@ -4,7 +4,7 @@ Assertion
 
 
 * [Assertion](#module_Assertion)
-  * [.ok()](#module_Assertion.ok) ⇒ <code>any</code>
+  * [.ok(e)](#module_Assertion.ok) ⇒ <code>any</code>
   * [.nothing(e)](#module_Assertion.nothing) ⇒ <code>any</code>
   * [.fail(e)](#module_Assertion.fail) ⇒ <code>any</code>
   * [.empty(obj)](#module_Assertion.empty) ⇒ <code>Array</code> &#124; <code>String</code>
@@ -21,15 +21,15 @@ Assertion
   * [.throws(f)](#module_Assertion.throws) ⇒ <code>any</code>
 
 <a name="module_Assertion.ok"></a>
-### Assertion.ok() ⇒ <code>any</code>
+### Assertion.ok(e) ⇒ <code>any</code>
 Assertion fails if (!e)
 
 **Kind**: static method of <code>[Assertion](#module_Assertion)</code>  
 **Returns**: <code>any</code> - e  
 
-| Type |
-| --- |
-| <code>any</code> | 
+| Param | Type |
+| --- | --- |
+| e | <code>any</code> | 
 
 **Example**  
 ```js

@@ -5,6 +5,7 @@ To be the best unit test framework for node.js .
   1. Replace setUp and tearDown with before(Each) and after(Each).
   2. Setup ```before*``` and ```after*``` for a directory by adding a ```.js``` file with the same name.
   3. The -dd/--debug option.
+  4. Only Node 4.x supported.
 
 # Installation
     npm install -g bestunit.js
@@ -31,7 +32,7 @@ beforeEach/afterEach will be called before/after each ```TestCase```/```TestGrou
 
 # Assertion
   You can require any assertion 3rd-party module you like or just use intrinsics.
-  
+
   [Assertion](https://github.com/kitt1987/bestunit.js/tree/master/assertion.md)
 
 # How to

@@ -4,13 +4,13 @@ Assertion
 
 
 * [Assertion](#module_Assertion)
+  * [.typeIs](#module_Assertion.typeIs) ⇒ <code>any</code>
   * [.ok(e)](#module_Assertion.ok) ⇒ <code>any</code>
   * [.nothing(e)](#module_Assertion.nothing) ⇒ <code>any</code>
   * [.fail(e)](#module_Assertion.fail) ⇒ <code>any</code>
   * [.empty(obj)](#module_Assertion.empty) ⇒ <code>Array</code> &#124; <code>String</code>
   * [.notEmpty(obj)](#module_Assertion.notEmpty) ⇒ <code>Array</code> &#124; <code>String</code>
   * [.isA(o, c)](#module_Assertion.isA) ⇒ <code>any</code>
-  * [.typeIs(v, t)](#module_Assertion.typeIs) ⇒ <code>any</code>
   * [.isString(s)](#module_Assertion.isString) ⇒ <code>String</code>
   * [.eq(a, b)](#module_Assertion.eq) ⇒ <code>any</code>
   * [.ne(a, b)](#module_Assertion.ne) ⇒ <code>any</code>
@@ -20,6 +20,22 @@ Assertion
   * [.le(a, b)](#module_Assertion.le) ⇒ <code>Number</code>
   * [.throws(f)](#module_Assertion.throws) ⇒ <code>any</code>
 
+<a name="module_Assertion.typeIs"></a>
+### Assertion.typeIs ⇒ <code>any</code>
+Assertion fails if (typeof v !== t)
+
+**Kind**: static property of <code>[Assertion](#module_Assertion)</code>  
+**Returns**: <code>any</code> - v  
+
+| Param | Type |
+| --- | --- |
+| v | <code>any</code> | 
+| t | <code>any</code> | 
+
+**Example**  
+```js
+t.typeIs([], Object);
+```
 <a name="module_Assertion.ok"></a>
 ### Assertion.ok(e) ⇒ <code>any</code>
 Assertion fails if (!e)
@@ -110,22 +126,6 @@ Assertion fails if (!(o instanceof c))
 **Example**  
 ```js
 t.isA([], Array);
-```
-<a name="module_Assertion.typeIs"></a>
-### Assertion.typeIs(v, t) ⇒ <code>any</code>
-Assertion fails if (typeof v !== t)
-
-**Kind**: static method of <code>[Assertion](#module_Assertion)</code>  
-**Returns**: <code>any</code> - v  
-
-| Param | Type |
-| --- | --- |
-| v | <code>any</code> | 
-| t | <code>any</code> | 
-
-**Example**  
-```js
-t.typeIs([], Object);
 ```
 <a name="module_Assertion.isString"></a>
 ### Assertion.isString(s) ⇒ <code>String</code>

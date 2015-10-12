@@ -31,6 +31,8 @@ beforeEach/afterEach will be called before/after each ```TestCase```/```TestGrou
 
 # Assertion
   You can require any assertion 3rd-party module you like or just use intrinsics.
+  
+  [Assertion](https://github.com/kitt1987/bestunit.js/tree/master/assertion.md)
 
 # How to
 ## Simplest

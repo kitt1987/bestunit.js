@@ -20,8 +20,9 @@
   },
   "dependencies": {
     "argparse": "^1.0.2",
-    "async": "^1.2.1",
-    "colors": "^1.1.2",
-    "lodash": "^3.9.3"
+    "colors": "^1.1.2"
+  },
+  "peerDependencies": {
+    "node": "4.x"
   }
 }

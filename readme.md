@@ -1,7 +1,7 @@
 To be the best unit test framework for node.js .
 
 # ChangeLog
-## v0.1.0
+## v0.1.x
   1. Replace setUp and tearDown with before(Each) and after(Each).
   2. Setup ```before*``` and ```after*``` for a directory by adding a ```.js``` file with the same name.
   3. The -dd/--debug option.

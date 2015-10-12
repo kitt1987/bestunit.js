@@ -1,6 +1,6 @@
 {
   "name": "bestunit.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "To be the best unit test framework for node.js",
   "main": "index.js",
   "scripts": {
@@ -21,8 +21,5 @@
   "dependencies": {
     "argparse": "^1.0.2",
     "colors": "^1.1.2"
-  },
-  "peerDependencies": {
-    "node": "4.x"
   }
 }
